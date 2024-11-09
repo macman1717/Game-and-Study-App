@@ -4,11 +4,12 @@ import { SetComponent } from '../../components/set/set.component';
 import {Router} from '@angular/router';
 import { ApiSetsService } from '../../services/api.sets.service';
 import { Card } from '../../../card-interface';
+import { CardComponent } from '../../components/card/card.component';
 
 @Component({
   selector: 'app-sets-page',
   standalone: true,
-  imports: [SetComponent],
+  imports: [SetComponent, CardComponent],
   templateUrl: './sets-page.component.html',
   styleUrl: './sets-page.component.css'
 })
@@ -33,6 +34,7 @@ export class SetsPageComponent {
         this.setsService.getCards(username, set.name).subscribe(
           (data: Card[]) => {
             this.setCards = data;
+            console.log(this.setCards);
           },
           (error: any) => {
             console.error('Error fetching sets:', error);

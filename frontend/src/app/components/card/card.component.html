@@ -1,0 +1,17 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="card-title mb-0">{{ card.term }}</h4>
+      <button
+        class="btn btn-outline-danger btn-sm"
+        aria-label="Delete"
+        (click)="onDelete()"
+      >
+        <i class="material-icons">delete</i>
+      </button>
+    </div>
+    <div class="card-body">
+        {{ card.definition }}
+    </div>
+  </div>
+</div>

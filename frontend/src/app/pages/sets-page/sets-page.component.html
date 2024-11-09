@@ -1,8 +1,11 @@
 <div class="container mt-5 mb-5">
 
   @if (viewingSet) {
+    <div class="text-center mb-4">
+      <h2>{{ viewingSet.name }}</h2>
+    </div>
     @for (card of setCards; track card.id) {
-      
+      <app-card [card]="card"/>
     }
   } @else {
     <div class="text-center mb-4">
