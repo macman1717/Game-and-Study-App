@@ -43,7 +43,7 @@ export class CreateSetPageComponent {
   submitList() {
     console.log(this.setName)
     // @ts-ignore
-    console.log(document.getElementById("setName"));
+    console.log(document.getElementById("setName").innerText);
     console.log(this.setName)
     this.setService.createSets(this.cards,"Baba","snolan3");
   }
