@@ -8,8 +8,7 @@ import java.util.List;
 
 public interface CardRepository extends MongoRepository<Card, String> {
 
-    @Query("{parentSet: '?0'}")
+    @Query("{setName: '?0'}")
     List<Card> findAll(String parentSet);
-
 
 }
