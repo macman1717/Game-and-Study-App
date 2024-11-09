@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Card } from '../../../card-interface';
+import {SubmittedCard} from "../../../submittedCard-interface";
 
 @Component({
   selector: 'app-card-prompt',
@@ -10,7 +11,7 @@ import { Card } from '../../../card-interface';
 })
 export class CardPromptComponent {
   @Input() headerText: string = "-1";
-  @Input() card!: Card;
+  @Input() card!: SubmittedCard;
   @Output() cardDeleted = new EventEmitter();
 
   onDelete() {

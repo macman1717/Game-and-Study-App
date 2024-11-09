@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CardPromptComponent } from '../../components/card-prompt/card-prompt.component';
 import { Card } from '../../../card-interface';
+import { SubmittedCard } from '../../../submittedCard-interface';
 import {RouterOutlet} from "@angular/router";
 import {SetService} from "../../set.service";
 import {ApiSetsService} from "../../services/api.sets.service";
@@ -15,27 +16,23 @@ import {ApiSetsService} from "../../services/api.sets.service";
 export class CreateSetPageComponent {
   constructor(private setService : ApiSetsService) { }
   setName: string = "";
-  cards: Card[] = [
+  cards: SubmittedCard[] = [
     {
-      id: 1,
       term: "GGC",
       definition: "Georgia Gwinnett College"
     },
-
     {
-      id: 2,
       term: "aaa",
       definition: "a Gwinnett College"
     }
   ];
 
-  deleteCard(cardId: number) {
-    this.cards = this.cards.filter(card => card.id !== cardId);
+  deleteCard(cardTerm: string) {
+    this.cards = this.cards.filter(card => card.term !== cardTerm);
   }
 
   addCard() {
-    const newCard: Card = {
-      id: this.cards.length + 1,
+    const newCard: SubmittedCard = {
       term: "New Term",
       definition: "New Definition"
     };
@@ -44,6 +41,6 @@ export class CreateSetPageComponent {
   }
 
   submitList() {
-    this.setService.createSets(this.cards,"Set 4","snolan3");
+    this.setService.createSets(this.cards,"Set-4","snolan3");
   }
 }
