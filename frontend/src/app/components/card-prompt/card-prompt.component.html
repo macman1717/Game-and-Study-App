@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="card-title mb-0">{{ headerText }}</h4>
+      <button class="btn btn-outline-danger btn-sm" aria-label="Delete" (click)="onDelete()">
+        <i class="material-icons">delete</i>
+      </button>
+    </div>
+    <div class="card-body">
+      <form>
+        <div class="mb-3">
+          <label for="term" class="form-label">Term</label>
+          <input
+            type="text"
+            class="form-control"
+            id="term"
+            placeholder="Enter term"
+            required
+            [value]="card.term"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="definition" class="form-label">Definition</label>
+          <textarea
+            class="form-control"
+            id="definition"
+            placeholder="Enter definition"
+            required
+            [value]="card.definition"
+          ></textarea>
+        </div>
+
+        <div class="mb-0">
+          <label for="image" class="form-label">Image Prompt</label>
+          <input type="file" class="form-control" id="image" accept="image/*" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
