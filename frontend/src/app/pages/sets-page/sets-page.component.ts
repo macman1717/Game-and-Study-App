@@ -15,27 +15,27 @@ export class SetsPageComponent {
   constructor(private router: Router) {}
 
   sets: Set[] = [
-    {
-      name: "Chemistry 121212k",
-      numCards: 12,
-    },
-
-    {
-      name: "Chemistry 12312k",
-      numCards: 12,
-    },
-
-    {
-      name: "Chemistry 12112k",
-      numCards: 12,
-    },
-
-    {
-      name: "Chemistry 12122k",
-      numCards: 12,
-    }
+    // {
+    //   name: "Chemistry 121212k",
+    //   numCards: 12,
+    // },
+    //
+    // {
+    //   name: "Chemistry 12312k",
+    //   numCards: 12,
+    // },
+    //
+    // {
+    //   name: "Chemistry 12112k",
+    //   numCards: 12,
+    // },
+    //
+    // {
+    //   name: "Chemistry 12122k",
+    //   numCards: 12,
+    // }
   ];
-  
+
   createSet() {
     this.router.navigate(['/create-set']);
   }
