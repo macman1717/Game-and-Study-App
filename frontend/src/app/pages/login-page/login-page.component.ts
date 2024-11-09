@@ -24,14 +24,14 @@ export class LoginPageComponent {
     this.isForgotPassword = true;
   }
 
-
   onSigninSubmit() {
     this.authService.login(this.email, this.password).subscribe(
       (response) => {
-        this.authService.setToken(response.token); 
-        this.router.navigate(['exact/admin-dashboard']);
+        this.authService.setToken(this.email); 
+        this.router.navigate(['sets']);
       },
       (error) => {
+        console.log(error);
         alert('Invalid email or password');
       }
     );
