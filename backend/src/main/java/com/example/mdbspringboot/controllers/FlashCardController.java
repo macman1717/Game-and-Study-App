@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/flashcards")
 public class FlashCardController {
 
@@ -36,6 +37,8 @@ public class FlashCardController {
 
     @GetMapping("/findSetOfCards/{parentSet}")
     public List<Card> findSetOfCards(@PathVariable("parentSet") String parentSet){
+        System.out.println("HERE");
+        System.out.println(cardRepo.findAll(parentSet));
         return cardRepo.findAll(parentSet);
     }
 }
