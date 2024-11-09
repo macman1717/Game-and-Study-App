@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import {Card} from "../../card-interface";
 import { Observable } from 'rxjs';
 import { Set } from '../../set-interface';
+import {SubmittedCard} from "../../submittedCard-interface";
+import {readTsconfig} from "@angular-devkit/build-angular/src/utils/read-tsconfig";
 
 
 @Injectable({
@@ -12,9 +14,10 @@ import { Set } from '../../set-interface';
 export class ApiSetsService {
   constructor(private http: HttpClient) {}
 
-  createSets(cards: Card[], setName: string, username: string){
+  createSets(cards: SubmittedCard[], setName: string, username: string){
     console.log(`http://localhost:8080/users/${username}/addSet/${setName}`);
-    return this.http.post(`http://localhost:8080/users/${username}/addSet/${setName}`,cards);
+    console.log(cards);
+    return this.http.post(`http://localhost:8080/users/${username}/addSet/${setName}`,cards).subscribe();
   }
 
   getSets(username: string): Observable<string[]> {
