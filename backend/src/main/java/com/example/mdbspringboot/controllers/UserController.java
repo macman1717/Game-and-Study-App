@@ -40,14 +40,16 @@ public class UserController {
         return userRepo.findUserByUsername(username).getSets();
     }
 
-    @PostMapping("/{username}/addSet/{setName}")
-    public void addSet(@PathVariable("username") String username, @RequestBody List<Card> cards, @PathVariable("setName") String setName){
+    @PostMapping("/{username}/addSet/{parentSet}")
+    public void addSet(@PathVariable("username") String username, @RequestBody List<Card> cards, @PathVariable("parentSet") String parentSet){
+        System.out.println("HERE");
         User user = userRepo.findUserByUsername(username);
-        user.getSets().add(setName);
+        user.getSets().add(parentSet);
         userRepo.save(user);
         for(Card card : cards){
+            System.out.println(card);
             card.setOwner(username);
-            card.setParentSet(username + "-" + setName);
+            card.setParentSet(username + "-" + parentSet);
         }
         cardRepo.saveAll(cards);
     }
