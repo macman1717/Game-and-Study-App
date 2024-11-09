@@ -9,12 +9,22 @@ public class Card {
     private String id;
     private String term;
     private String definition;
-    private String parentSet;
+    private String setName;
+    private String owner;
 
-    public Card(String term, String definition, String parentSet) {
+    public Card(String term, String definition, String parentSet, String owner) {
         this.term = term;
         this.definition = definition;
-        this.parentSet = parentSet;
+        this.setName = parentSet;
+        this.owner = owner;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getId() {
@@ -42,10 +52,10 @@ public class Card {
     }
 
     public String getParentSet() {
-        return parentSet;
+        return setName;
     }
 
     public void setParentSet(String parentSet) {
-        this.parentSet = parentSet;
+        this.setName = parentSet;
     }
 }
