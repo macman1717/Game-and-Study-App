@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
 export class LoginPageComponent {
   email = '';
   password = '';
-  
+
   isForgotPassword: boolean = false;
   otpSent: boolean = false;
   otpVerified: boolean = false;
- 
+
   constructor(private authService: AuthService, private router: Router) {}
 
   showForgotPasswordForm() {
@@ -27,8 +27,13 @@ export class LoginPageComponent {
   onSigninSubmit() {
     this.authService.login(this.email, this.password).subscribe(
       (response) => {
-        this.authService.setToken(this.email); 
-        this.router.navigate(['sets']);
+        // @ts-ignore
+        if(response.userName !== "ERROR") {
+          this.authService.setToken(this.email);
+          this.router.navigate(['sets']);
+        }else{
+          alert('Invalid email or password');
+        }
       },
       (error) => {
         console.log(error);
