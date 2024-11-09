@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CardPromptComponent } from '../../components/card-prompt/card-prompt.component';
 import { Card } from '../../../card-interface';
+import {RouterOutlet} from "@angular/router";
+import {SetService} from "../../set.service";
+import {ApiSetsService} from "../../services/api.sets.service";
 
 @Component({
   selector: 'app-create-set-page',
@@ -10,6 +13,7 @@ import { Card } from '../../../card-interface';
   styleUrl: './create-set-page.component.css'
 })
 export class CreateSetPageComponent {
+  constructor(private setService : ApiSetsService) { }
   setName: string = "";
   cards: Card[] = [
     {
@@ -37,5 +41,9 @@ export class CreateSetPageComponent {
     };
 
     this.cards.push(newCard);
+  }
+
+  submitList() {
+    this.setService.createSets(this.cards,"Set 4","snolan3");
   }
 }
