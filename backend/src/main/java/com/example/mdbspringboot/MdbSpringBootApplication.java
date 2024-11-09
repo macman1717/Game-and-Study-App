@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.example.mdbspringboot.model.Card;
 import com.example.mdbspringboot.model.User;
+import com.example.mdbspringboot.repository.CardRepository;
 import com.example.mdbspringboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,6 +22,8 @@ public class MdbSpringBootApplication implements CommandLineRunner{
 
 	@Autowired
 	UserRepository userRepo;
+	@Autowired
+	CardRepository cardRepo;
 	
 
 
@@ -42,16 +45,15 @@ public class MdbSpringBootApplication implements CommandLineRunner{
 						
 	}
 	
-	@GetMapping("/getUser")
-	public User getUserByUsername(@RequestParam String username){
+	@GetMapping("/getUser/{username}")
+	public User getUserByUsername(@PathVariable("username") String username){
 		System.out.println(username);
 		return userRepo.findUserByUsername(username);
 	}
 
-	@PostMapping("/addCard")
-	public void postFlashCard(@RequestBody Card card){
-		System.out.println(card);
-
-	}
+//	@PostMapping("/addCard")
+//	public void postFlashCard(@RequestBody Card card){
+//		cardRepo.save(card);
+//	}
 }
 
