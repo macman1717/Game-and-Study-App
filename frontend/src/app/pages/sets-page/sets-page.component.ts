@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Set } from '../../../set-interface';
 import { SetComponent } from '../../components/set/set.component';
 import {Router} from '@angular/router';
+import { ApiSetsService } from '../../services/api.sets.service';
+import { Card } from '../../../card-interface';
 
 @Component({
   selector: 'app-sets-page',
@@ -12,31 +14,56 @@ import {Router} from '@angular/router';
 })
 
 export class SetsPageComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private setsService: ApiSetsService) {}
 
-  sets: Set[] = [
-    // {
-    //   name: "Chemistry 121212k",
-    //   numCards: 12,
-    // },
-    //
-    // {
-    //   name: "Chemistry 12312k",
-    //   numCards: 12,
-    // },
-    //
-    // {
-    //   name: "Chemistry 12112k",
-    //   numCards: 12,
-    // },
-    //
-    // {
-    //   name: "Chemistry 12122k",
-    //   numCards: 12,
-    // }
-  ];
+  sets: Set[] = [];
+  viewingSet!: Set;
+  setCards!: Card[];
 
   createSet() {
     this.router.navigate(['/create-set']);
+  }
+
+  viewSet(set: Set) {
+    this.viewingSet = set;
+
+    if (typeof window !== 'undefined') {
+      const username = localStorage.getItem('token') || '';
+      if (username) {
+        this.setsService.getCards(username, set.name).subscribe(
+          (data: Card[]) => {
+            this.setCards = data;
+          },
+          (error: any) => {
+            console.error('Error fetching sets:', error);
+          }
+        );
+      } else {
+        console.warn('Username not found in localStorage');
+      }
+    }
+  }
+  
+
+  ngOnInit() {
+    if (typeof window !== 'undefined') {
+      const username = localStorage.getItem('token') || '';
+      if (username) {
+        this.setsService.getSets(username).subscribe(
+          (data: string[]) => {
+            this.sets = data.map((name) => ({
+              name: name,
+              numCards: 0,
+              cards: []
+            }));
+          },
+          (error) => {
+            console.error('Error fetching sets:', error);
+          }
+        );
+      } else {
+        console.warn('Username not found in localStorage');
+      }
+    }
   }
 }
