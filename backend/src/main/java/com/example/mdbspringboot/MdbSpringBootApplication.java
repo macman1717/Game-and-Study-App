@@ -33,16 +33,7 @@ public class MdbSpringBootApplication implements CommandLineRunner{
 
 
 	public void run(String... args) {
-		userRepo.save(new User("snolan3","ExactApp",new ArrayList<>()));
 
-		User sean = userRepo.findUserByUsername("snolan3");
-		ArrayList<String> sets = new ArrayList<>();
-		sets.add("Test 3");
-		sets.add("Test 4");
-		sean.setSets(sets);
-
-		userRepo.save(sean);
-						
 	}
 	
 	@GetMapping("/getUser/{username}")
