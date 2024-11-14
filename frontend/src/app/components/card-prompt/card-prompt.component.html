@@ -13,10 +13,13 @@
           <input
             type="text"
             class="form-control"
+            name="term"
             id="term"
             placeholder="Enter term"
             required
             [value]="card.term"
+            [(ngModel)]="card.term"
+            (input)="onUpdate()"
           />
         </div>
 
@@ -24,16 +27,19 @@
           <label for="definition" class="form-label">Definition</label>
           <textarea
             class="form-control"
+            name="definition"
             id="definition"
             placeholder="Enter definition"
             required
             [value]="card.definition"
+            [(ngModel)]="card.definition"
+            (input)="onUpdate()"
           ></textarea>
         </div>
 
         <div class="mb-0">
           <label for="image" class="form-label">Image Prompt</label>
-          <input type="file" class="form-control" id="image" accept="image/*" />
+          <input type="file" class="form-control" id="image" accept="image/*" (input)="onUpdate()" />
         </div>
       </form>
     </div>

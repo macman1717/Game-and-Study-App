@@ -27,6 +27,7 @@ public class UserController {
 
     @GetMapping("/login")
     public User loginUser(@RequestParam String username, @RequestParam String password){
+        System.out.println("User:" + username);
         User user = userRepo.findUserByUsername(username);
         if(user.getPassWord().equals(password)){
             return user;

@@ -25,9 +25,9 @@ export class LoginPageComponent {
   }
 
   onSigninSubmit() {
-    this.authService.login(this.email, this.password).subscribe(
-      (response) => {
-        // @ts-ignore
+    
+    this.authService.login(this.email, this.password).subscribe({
+       next: (response: any) => {
         if(response.userName !== "ERROR") {
           this.authService.setToken(this.email);
           this.router.navigate(['sets']);
@@ -35,10 +35,10 @@ export class LoginPageComponent {
           alert('Invalid email or password');
         }
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
         alert('Invalid email or password');
       }
-    );
+    });
   }
 }

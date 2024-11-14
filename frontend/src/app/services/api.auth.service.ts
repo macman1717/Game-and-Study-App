@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<{}> {
-    return this.http.get(
+    return this.http.get<{ username: string }>(
       `${environment.apiURL}/users/login?username=${email}&password=${password}`
     );
   }
