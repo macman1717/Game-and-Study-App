@@ -1,33 +1,23 @@
 <div class="container mt-5 mb-5">
+  <div class="text-center mb-4">
+    <p class="lead">Sets</p>
+  </div>
 
-  @if (viewingSet) {
-    <div class="text-center mb-4">
-      <h2>{{ viewingSet.name }}</h2>
+  <div class="row justify-content-center">
+    @for (set of sets; track set.name) {
+    <div class="col-6 col-sm-12 col-md-6" (click)="viewSet(set)">
+      <app-set [set]="set"></app-set>
     </div>
-    @for (card of setCards; track card.id) {
-      <app-card [card]="card"/>
     }
-  } @else {
-    <div class="text-center mb-4">
-      <p class="lead">Sets</p>
-    </div>
-  
-    <div class="row justify-content-center">
-      @for (set of sets; track set.name) {
-      <div class="col-6 col-sm-12 col-md-6" (click)="viewSet(set)">
-        <app-set [set]="set"></app-set>
-      </div>
-      }
-  
-      <div class="container mt-4" (click)="createSet()">
-        <div class="card">
-          <div class="card-body text-center btn">Create A Set</div>
-        </div>
+
+    <div class="container mt-4" (click)="createSet()">
+      <div class="card">
+        <div class="card-body text-center btn">Create A Set</div>
       </div>
     </div>
-  
-    <div class="d-flex justify-content-end mt-4">
-      <button class="btn btn-primary">Create</button>
-    </div>
-  }
+  </div>
+
+  <div class="d-flex justify-content-end mt-4">
+    <button class="btn btn-primary">Create</button>
+  </div>
 </div>

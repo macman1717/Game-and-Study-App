@@ -18,32 +18,13 @@ export class SetsPageComponent {
   constructor(private router: Router, private setsService: ApiSetsService) {}
 
   sets: Set[] = [];
-  viewingSet!: Set;
-  setCards!: Card[];
 
   createSet() {
     this.router.navigate(['/create-set']);
   }
 
   viewSet(set: Set) {
-    this.viewingSet = set;
-
-    if (typeof window !== 'undefined') {
-      const username = localStorage.getItem('token') || '';
-      if (username) {
-        this.setsService.getCards(username, set.name).subscribe(
-          (data: Card[]) => {
-            this.setCards = data;
-            console.log(this.setCards);
-          },
-          (error: any) => {
-            console.error('Error fetching sets:', error);
-          }
-        );
-      } else {
-        console.warn('Username not found in localStorage');
-      }
-    }
+    this.router.navigate(['/view-set', set.name]);
   }
   
 
