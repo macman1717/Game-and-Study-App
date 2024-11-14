@@ -11,4 +11,5 @@ public interface CardRepository extends MongoRepository<Card, String> {
     @Query("{parentSet: '?0'}")
     List<Card> findAll(String setName);
 
+
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin
@@ -53,6 +54,18 @@ public class UserController {
             card.setParentSet(username + "-" + parentSet);
         }
         cardRepo.saveAll(cards);
+    }
+
+    @DeleteMapping("/{username}/deleteSet/{setName}")
+    public void deleteSet(@PathVariable("username") String username, @PathVariable("setName") String setName){
+        User user = userRepo.findUserByUsername(username);
+        ArrayList<String> sets = user.getSets();
+        sets.removeIf(existingSetName -> existingSetName.equals(setName));
+        userRepo.save(user);
+
+        String parentSet = username + "-" + setName;
+        List<Card> cards = cardRepo.findAll(parentSet);
+        cardRepo.deleteAll(cards);
     }
 
 }

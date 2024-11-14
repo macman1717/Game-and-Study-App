@@ -37,4 +37,10 @@ export class ApiSetsService {
     console.log("Deleting card: " + id);
     return this.http.delete(`http://localhost:8080/flashcards/deleteCard/${id}`).subscribe();
   }
+
+  deleteSet(username: string, setName: string) {
+    console.log(`http://localhost:8080/users/${username}/deleteSet/${setName}`);
+    console.log("Deleting set: " + setName);
+    return this.http.delete(`http://localhost:8080/users/${username}/deleteSet/${setName}`).subscribe();
+  }
 }

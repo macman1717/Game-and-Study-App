@@ -3,6 +3,7 @@ import { CardComponent } from '../../components/card/card.component';
 import { ApiSetsService } from '../../services/api.sets.service';
 import { ActivatedRoute } from '@angular/router';
 import { Card } from '../../../card-interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-set-page',
@@ -14,6 +15,7 @@ import { Card } from '../../../card-interface';
 export class ViewSetPageComponent {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private setsService: ApiSetsService
   ) {}
 
@@ -23,6 +25,18 @@ export class ViewSetPageComponent {
   deleteCard(id: string) {
     this.setsService.deleteCard(id);
     this.setCards = this.setCards.filter(card => card.id !== id);
+  }
+
+  deleteSet() {
+    if (typeof window !== 'undefined') {
+      const username = localStorage.getItem('token');
+      if (username) {
+        this.setsService.deleteSet(username, this.setName);
+        this.router.navigate(['/sets']).then(() => {
+          window.location.reload();
+        });
+      }
+    }
   }
 
   ngOnInit(): void {

@@ -3,6 +3,7 @@ import { CardPromptComponent } from '../../components/card-prompt/card-prompt.co
 import { SubmittedCard } from '../../../submittedCard-interface';
 import {ApiSetsService} from "../../services/api.sets.service";
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-set-page',
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './create-set-page.component.css'
 })
 export class CreateSetPageComponent {
-  constructor(private setService : ApiSetsService) { }
+  constructor(private setService : ApiSetsService, private router : Router) { }
   setName: string = "";
   submitted = true;
   createError!: string;
@@ -48,6 +49,9 @@ export class CreateSetPageComponent {
       if (username) {
         console.log(this.cards);
         this.setService.createSets(this.cards, this.setName, username);
+        this.router.navigate([`/view-set/${this.setName}`]).then(() => {
+          window.location.reload();
+        });
         return;
       }
 

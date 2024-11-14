@@ -5,4 +5,8 @@
       @for (card of setCards; track card.id) {
         <app-card [card]="card" (cardDeleted)="deleteCard($event)"/>
       }
+
+      <div class="d-flex justify-content-end mt-4">
+        <button (click)="deleteSet()" class="btn btn-danger">Delete Set</button>
+      </div>
 </div>
