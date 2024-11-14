@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from '../../../card-interface';
 
 @Component({
@@ -10,8 +10,9 @@ import { Card } from '../../../card-interface';
 })
 export class CardComponent {
   @Input() card!: Card;
+  @Output() cardDeleted = new EventEmitter();
 
   onDelete() {
-    
+    this.cardDeleted.emit(this.card.id);
   }
 }

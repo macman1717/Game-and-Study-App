@@ -20,6 +20,11 @@ export class ViewSetPageComponent {
   setCards!: Card[];
   setName!: string;
 
+  deleteCard(id: string) {
+    this.setsService.deleteCard(id);
+    this.setCards = this.setCards.filter(card => card.id !== id);
+  }
+
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       const username = localStorage.getItem('token');
@@ -29,7 +34,6 @@ export class ViewSetPageComponent {
           (data: Card[]) => {
             this.setCards = data;
             this.setName = setName;
-            console.log(this.setCards);
           },
           (error: any) => {
             console.error('Error fetching sets:', error);

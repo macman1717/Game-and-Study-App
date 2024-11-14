@@ -1,5 +1,5 @@
 export interface Card {
-  id: number;
+  id: string;
   term: string;
   definition: string;
 }

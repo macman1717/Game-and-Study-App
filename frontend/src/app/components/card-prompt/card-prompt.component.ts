@@ -17,6 +17,7 @@ export class CardPromptComponent {
   @Output() cardUpdated = new EventEmitter();
 
   onDelete() {
+    console.log("Delete");
     this.cardDeleted.emit();
   }
 

@@ -31,4 +31,10 @@ export class ApiSetsService {
     console.log(`http://localhost:8080/flashcards/findSetOfCards/${parentSet}`);
     return this.http.get<Card[]>(`http://localhost:8080/flashcards/findSetOfCards/${parentSet}`);
   }
+
+  deleteCard(id: string) {
+    console.log(`http://localhost:8080/flashcards/deleteCard/${id}`);
+    console.log("Deleting card: " + id);
+    return this.http.delete(`http://localhost:8080/flashcards/deleteCard/${id}`).subscribe();
+  }
 }

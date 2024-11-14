@@ -25,9 +25,9 @@ public class FlashCardController {
         cardRepo.saveAll(cards);
     }
 
-    @DeleteMapping("/deleteCard")
-    public void deleteFlashCard(@RequestBody Card card){
-        cardRepo.deleteById(card.getId());
+    @DeleteMapping("/deleteCard/{id}")
+    public void deleteFlashCard(@PathVariable("id") String id){
+        cardRepo.deleteById(id);
     }
 
     @PutMapping("/updateCard")

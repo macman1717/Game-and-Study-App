@@ -3,6 +3,6 @@
         <h2>{{ setName }}</h2>
       </div>
       @for (card of setCards; track card.id) {
-        <app-card [card]="card"/>
+        <app-card [card]="card" (cardDeleted)="deleteCard($event)"/>
       }
 </div>
