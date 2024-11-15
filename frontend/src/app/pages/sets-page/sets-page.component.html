@@ -1,18 +1,18 @@
 <div class="container mt-5 mb-5">
   <div class="text-center mb-4">
-    <p class="lead">Sets</p>
+    <h1>Your Sets</h1>
   </div>
 
   <div class="row justify-content-center">
     @for (set of sets; track set.name) {
-    <div class="col-6 col-sm-12 col-md-6" (click)="viewSet(set)">
+    <div class="col-6" (click)="viewSet(set)">
       <app-set [set]="set"></app-set>
     </div>
     }
 
     <div class="container mt-4" (click)="createSet()">
-      <div class="card">
-        <div class="card-body text-center btn">Create A Set</div>
+      <div class="text-center">
+        <button class="btn btn-primary">Create A Set</button>
       </div>
     </div>
   </div>

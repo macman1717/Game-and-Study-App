@@ -16,8 +16,8 @@ public class FlashCardController {
     CardRepository cardRepo;
 
     @PostMapping("/addCard")
-    public void postFlashCard(@RequestBody Card card){
-        cardRepo.save(card);
+    public Card postFlashCard(@RequestBody Card card){
+        return cardRepo.save(card);
     }
 
     @PutMapping("/addCardsFromList")

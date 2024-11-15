@@ -43,4 +43,8 @@ export class ApiSetsService {
     console.log("Deleting set: " + setName);
     return this.http.delete(`http://localhost:8080/users/${username}/deleteSet/${setName}`).subscribe();
   }
+
+  addPartialCard(card: Partial<Card>) {
+    return this.http.post<Card>(`http://localhost:8080/flashcards/addCard`, card);
+  }
 }

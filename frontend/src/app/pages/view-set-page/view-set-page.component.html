@@ -1,12 +1,13 @@
 <div class="container mt-5 mb-5">
-    <div class="text-center mb-4">
-        <h2>{{ setName }}</h2>
-      </div>
-      @for (card of setCards; track card.id) {
-        <app-card [card]="card" (cardDeleted)="deleteCard($event)"/>
-      }
+  <div class="text-center mb-4">
+    <h2>{{ setName }}</h2>
+  </div>
+  @for (card of setCards; track card.id) {
+  <app-card [card]="card" (cardDeleted)="deleteCard($event)" />
+  }
 
-      <div class="d-flex justify-content-end mt-4">
-        <button (click)="deleteSet()" class="btn btn-danger">Delete Set</button>
-      </div>
+  <div class="d-flex justify-content-end mt-4">
+    <button (click)="addCard()" class="btn mx-2 btn-primary">Add Card</button>
+    <button (click)="deleteSet()" class="btn btn-danger">Delete Set</button>
+  </div>
 </div>
