@@ -24,7 +24,24 @@ export class ViewSetPageComponent {
 
   deleteCard(id: string) {
     this.setsService.deleteCard(id);
-    this.setCards = this.setCards.filter(card => card.id !== id);
+    this.setCards = this.setCards.filter((card) => card.id !== id);
+  }
+
+  addCard() {
+    if (typeof window !== 'undefined') {
+      const username = localStorage.getItem('token');
+      if (username) {
+        const newCard: Partial<Card> = {
+          term: 'New Term',
+          definition: 'New Definition',
+          parentSet: username + '-' + this.setName,
+          owner: username
+        };
+        this.setsService.addPartialCard(newCard).subscribe((newerCard: Card) => {
+          this.setCards.push(newerCard);
+        });
+      }
+    }
   }
 
   deleteSet() {

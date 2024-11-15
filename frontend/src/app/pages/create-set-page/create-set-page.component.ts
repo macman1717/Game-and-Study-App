@@ -49,9 +49,12 @@ export class CreateSetPageComponent {
       if (username) {
         console.log(this.cards);
         this.setService.createSets(this.cards, this.setName, username);
-        this.router.navigate([`/view-set/${this.setName}`]).then(() => {
-          window.location.reload();
+        this.router.navigate(['/sets']).then(() => {
+          this.router.navigate([`/view-set/${this.setName}`]).then(() => {
+            window.location.reload();
+          });
         });
+        
         return;
       }
 
