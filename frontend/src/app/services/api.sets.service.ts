@@ -27,9 +27,8 @@ export class ApiSetsService {
   }
 
   getCards(username: string, setName: string): Observable<Card[]> {
-    const parentSet = username + "-" + setName;
-    console.log(`http://localhost:8080/flashcards/findSetOfCards/${parentSet}`);
-    return this.http.get<Card[]>(`http://localhost:8080/flashcards/findSetOfCards/${parentSet}`);
+    console.log(`http://localhost:8080/sets/findSetOfCards/${setName}`);
+    return this.http.get<Card[]>(`http://localhost:8080/sets/getSet/${username}/${setName}`);
   }
 
   deleteCard(id: string) {
