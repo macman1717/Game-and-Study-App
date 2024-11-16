@@ -12,13 +12,16 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/users")
 public class UserController {
-    @Autowired
-    UserRepository userRepo;
-    @Autowired
-    CardRepository cardRepo;
+    private final UserRepository userRepo;
+    private final CardRepository cardRepo;
+
+    public UserController(UserRepository userRepo, CardRepository cardRepo) {
+        this.userRepo = userRepo;
+        this.cardRepo = cardRepo;
+    }
+
     @GetMapping("/{username}")
     public User findUser(@PathVariable("username") String username){
         User user = userRepo.findUserByUsername(username);

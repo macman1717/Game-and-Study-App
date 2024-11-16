@@ -2,18 +2,20 @@ package com.example.mdbspringboot.controllers;
 
 import com.example.mdbspringboot.model.Card;
 import com.example.mdbspringboot.repository.CardRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/flashcards")
 public class FlashCardController {
 
-    @Autowired
-    CardRepository cardRepo;
+
+    private final CardRepository cardRepo;
+
+    public FlashCardController(CardRepository cardRepo) {
+        this.cardRepo = cardRepo;
+    }
 
     @PostMapping("/addCard")
     public Card postFlashCard(@RequestBody Card card){

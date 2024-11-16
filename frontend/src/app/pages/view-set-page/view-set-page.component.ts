@@ -61,7 +61,8 @@ export class ViewSetPageComponent {
       const username = localStorage.getItem('token');
       const setName = this.route.snapshot.paramMap.get('name');
       if (username && setName) {
-        this.setsService.getCards(username, setName).subscribe(
+        //hard wired set name for testing, update before merge
+        this.setsService.getCards(username, "Hello World").subscribe(
           (data: Card[]) => {
             this.setCards = data;
             this.setName = setName;
